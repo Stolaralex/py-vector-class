@@ -1,16 +1,18 @@
 import math
+from typing import Union
 
 
 class Vector:
-    def __init__(self, x , y):
+    def __init__(self, x: int, y: int) -> None:
         self.x = round(x, 2)
         self.y = round(y, 2)
 
-    def __add__(self, other):
+    def __add__(self, other: Union["Vector", int, float]) -> (
+            Union)["Vector", int, float]:
         if isinstance(other, Vector):
             return Vector(self.x + other.x, self.y + other.y)
 
-    def __sub__(self, other):
+    def __sub__(self, other: "Vector") -> "Vector":
         if isinstance(other, Vector):
             return Vector(self.x - other.x, self.y - other.y)
 
@@ -21,16 +23,17 @@ class Vector:
             return self
         return (self.x * other.x) + (self.y * other.y)
 
-    def _mul_scalar(self, other):
+    def _mul_scalar(self, other: "Vector") -> "Vector":
         return Vector(sum(self.x * other.x, self.y * other.y))
 
     @classmethod
-    def create_vector_by_two_points(cls, start_point, end_point):
+    def create_vector_by_two_points(cls, start_point: tuple,
+                                    end_point: tuple) -> "Vector":
         new_x = end_point[0] - start_point[0]
         new_y = end_point[1] - start_point[1]
         return cls(new_x, new_y)
 
-    def get_length(self):
+    def get_length(self) -> float:
         return math.sqrt(self.x ** 2 + self.y ** 2)
 
     def get_normalized(self) -> float:
