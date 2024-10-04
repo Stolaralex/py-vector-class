@@ -3,9 +3,9 @@ from typing import Union
 
 
 class Vector:
-    def __init__(self, x: int, y: int) -> None:
-        self.x = round(x, 2)
-        self.y = round(y, 2)
+    def __init__(self, cord_x: int, cord_y: int) -> None:
+        self.x = round(cord_x, 2)
+        self.y = round(cord_y, 2)
 
     def __add__(self, other: Union["Vector", int, float]) -> (
             Union)["Vector", int, float]:
